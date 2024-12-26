@@ -17,8 +17,11 @@ namespace WinFormsMVP2
             _model = model;
             _view = view;
             // Презентер подписывается на уведомления о событиях Представления
-            _view.AddRemove += new EventHandler<EventArgs>(AddBook);
-            _view.AddRemove += new EventHandler<EventArgs>(RemoveBook);
+            _view.BooksController += new EventHandler<EventArgs>(AddBook);
+            _view.BooksController += new EventHandler<EventArgs>(RemoveBook);
+            _view.BooksController += new EventHandler<EventArgs>(CleanList);
+            _view.BooksController += new EventHandler<EventArgs>(ShowFirstBook);
+
 
             UpdateView();
         }
@@ -51,6 +54,28 @@ namespace WinFormsMVP2
             _model.Data = _view.Data;
 
             _model.Delete();
+
+
+            // В данной форме этот вызов не нужен, однако в общем
+            // случае изменение части Модели может привести к изменениям
+            // в других ее частях. Поэтому необходимо синхронизировать
+            // Представление с новым текущим состоянием Модели.
+            UpdateView();
+        }
+        private void ShowFirstBook(object sender, EventArgs e)
+        {
+            MessageBox.Show(_model.ShowFirstBook(), "", MessageBoxButtons.OK);
+        }
+        private void CleanList(object sender, EventArgs e)
+        {
+            // В ответ на изменения в Представлении необходимо изменить Модель
+            _model.BookName = _view.BookName;
+            _model.Author = _view.Author;
+            _model.Genr = _view.Genr;
+            _model.Year = _view.Year;
+            _model.Data = _view.Data;
+
+            _model.CleanAll();
 
 
             // В данной форме этот вызов не нужен, однако в общем

@@ -13,6 +13,6 @@ namespace WinFormsMVP2
         string Genr { get; set; }
         string Year { get; set; }
         string Data { get; set; }
-        public event EventHandler<EventArgs> AddRemove;
+        public event EventHandler<EventArgs> BooksController;
     }
 }

@@ -16,5 +16,7 @@ namespace WinFormsMVP2
         void Save();
         string Load();
         void Delete();
+        void CleanAll();
+        string ShowFirstBook();
     }
 }

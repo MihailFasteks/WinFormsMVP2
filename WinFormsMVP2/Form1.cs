@@ -27,7 +27,7 @@ namespace WinFormsMVP2
             get { return textBox5.Text; }
             set { textBox5.Text = value; }
         }
-        public event EventHandler<EventArgs> AddRemove;
+        public event EventHandler<EventArgs> BooksController;
         public Form1()
         {
             InitializeComponent();
@@ -35,7 +35,7 @@ namespace WinFormsMVP2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var invocationList = AddRemove.GetInvocationList();
+            var invocationList = BooksController.GetInvocationList();
             try
             {
                 // Представление оповещает подписчиков (Презентер) о событии нажатия на кнопку
@@ -50,11 +50,81 @@ namespace WinFormsMVP2
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var invocationList = AddRemove.GetInvocationList();
+            var invocationList = BooksController.GetInvocationList();
             try
             {
                 // Представление оповещает подписчиков (Презентер) о событии нажатия на кнопку
                 invocationList[1]?.DynamicInvoke(this, EventArgs.Empty);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var invocationList = BooksController.GetInvocationList();
+            try
+            {
+                // Представление оповещает подписчиков (Презентер) о событии нажатия на кнопку
+                invocationList[2]?.DynamicInvoke(this, EventArgs.Empty);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            var invocationList = BooksController.GetInvocationList();
+            try
+            {
+                // Представление оповещает подписчиков (Презентер) о событии нажатия на кнопку
+                invocationList[3]?.DynamicInvoke(this, EventArgs.Empty);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void firstBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var invocationList = BooksController.GetInvocationList();
+            try
+            {
+                // Представление оповещает подписчиков (Презентер) о событии нажатия на кнопку
+                invocationList[3]?.DynamicInvoke(this, EventArgs.Empty);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var invocationList = BooksController.GetInvocationList();
+            try
+            {
+                // Представление оповещает подписчиков (Презентер) о событии нажатия на кнопку
+                invocationList[2]?.DynamicInvoke(this, EventArgs.Empty);
 
             }
             catch (Exception ex)

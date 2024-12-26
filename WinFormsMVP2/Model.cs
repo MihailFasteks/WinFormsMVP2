@@ -49,5 +49,23 @@ namespace WinFormsMVP2
 
             }
         }
+        public void CleanAll()
+        {
+            try
+            {
+
+                File.WriteAllText("Database.txt", "");
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+        public string ShowFirstBook()
+        {
+            var books=File.ReadAllLines("Database.txt", Encoding.UTF8).ToArray();
+            return books[0];
+        }
+
     }
 }
